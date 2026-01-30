@@ -1,0 +1,130 @@
+
+### Gene Set Enrichment Analysis ###
+
+library(clusterProfiler)
+library(msigdbr)
+library(magrittr)
+library(dplyr)
+library(enrichplot)
+library(ggplot2)
+library(gridExtra)
+
+setwd("D:/dealing/Miraj/GSEA/Miraj_GSEA")
+getwd()
+
+
+# Read the input data file (replace with your file path)
+
+FILE <- read.csv("GSEAA.csv")
+
+# Ensure the logFC column is numeric
+FILE$logFC <- as.numeric(FILE$logFC)
+
+# Summarize data by averaging logFC values for duplicate SYMBOLs
+aggregated_data <- FILE %>%
+  group_by(SYMBOL) %>%
+  summarize(mean_logFC = mean(logFC, na.rm = TRUE))
+
+# Save the output to a new CSV file
+#write.csv(aggregated_data, "GSEA_ready_data.csv", row.names = FALSE)
+
+# Print a preview of the result
+tail(aggregated_data)
+
+head(aggregated_data$mean_logFC)
+
+
+lfc_vector <- aggregated_data$mean_logFC
+
+names(lfc_vector) <- aggregated_data$SYMBOL
+
+
+# Sort the log2 fold change values in descending order here
+
+# This gives us the ranked gene list
+
+lfc_vector <- sort(lfc_vector, decreasing = TRUE)
+
+# Look at first entries of the ranked log2 fold change vector
+
+head(lfc_vector)
+
+# Time for performing GSEA
+
+msigdbr_species()
+
+#Obtain hallmark gene sets for humans
+#Hallmarks are collections of genes with similar functions
+
+hs_hallmark_sets <- msigdbr(
+  species = "Homo sapiens", 
+  category = "H")
+
+#write.csv(hs_hallmark_sets, "hallmark.csv")
+
+#Running GSEA
+gsea_results <- GSEA(
+  geneList = lfc_vector, 
+  minGSSize = 10, # Minimum gene set size
+  maxGSSize = 500, # Maximum gene set set
+  pvalueCutoff = 0.05, # p-value cutoff (0.01=99.99%, 0.1=90% , 0.05=95%)
+  eps = 0, # Boundary for calculating the p value
+  seed = FALSE, # Set seed to make results reproducible
+  pAdjustMethod = "BH", # Benjamini-Hochberg correction
+  TERM2GENE = dplyr::select(
+    hs_hallmark_sets,
+    gs_name,
+    gene_symbol))
+
+#Preview gsea results
+
+head(gsea_results@result)
+
+#Convert results to dataframe
+
+gsea_result_df <- data.frame(gsea_results@result)
+
+gseaResTidy <- gsea_result_df %>%
+  as_tibble() %>%
+  arrange(desc(NES))
+
+# Show in a nice table:
+gseaResTidy 
+
+write.csv(gseaResTidy, "GSEA_tablee.csv")
+
+#View the output carefully
+
+#Visualize all Hallmark pathways with significant up/downregulations
+pdf(file= "Combined_Hallmarks.pdf", width=12, height=8)
+ggplot(gseaResTidy, aes(reorder(ID, NES), NES)) +
+  geom_col(aes(fill=p.adjust<0.05)) +
+  coord_flip() +
+  labs(x="Pathway", y="Normalized Enrichment Score",
+       title="Hallmark pathways from GSEA")
+dev.off()
+
+#Visualize results
+
+# Filter for significant pathways
+significant_pathways <- gsea_result_df %>%
+  filter(p.adjust < 0.05)
+
+# Open a PDF file to save all plots
+pdf(file = "All_GSEA_Plots.pdf", width = 12, height = 8)
+
+# Loop through significant pathways and generate plots
+for (gene_set_id in significant_pathways$ID) {
+  plot <- enrichplot::gseaplot(
+    gsea_results,
+    geneSetID = gene_set_id,
+    title = gene_set_id,
+    color.line = "#0d76ff"
+  )
+  print(plot) # Print each plot to the PDF
+}
+
+# Close the PDF device
+dev.off()
+
+### Thanks ###
