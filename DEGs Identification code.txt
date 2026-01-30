@@ -1,0 +1,334 @@
+### END to END Microarray Data Analysis ###
+### Finding Differentially Expressed Genes (DEGs) from RAW data files ###
+
+### Install Packages ###
+
+### Installing Parent Package "BiocManager and Biobase" ###
+
+BiocManager::install("Biobase")
+if (!requireNamespace("BiocManager", quietly = TRUE))
+  install.packages("BiocManager")
+
+BiocManager::install('oligo')
+BiocManager::install('oligoClasses')
+BiocManager::install("ggplot2")
+BiocManager::install("pheatmap")
+BiocManager::install('limma')
+BiocManager::install('clusterProfiler')
+BiocManager::install('RColorBrewer')
+BiocManager::install('dplyr')
+BiocManager::install('tidyr')
+BiocManager::install('stringr')
+BiocManager::install('hgu133plus2.db')
+BiocManager::install("EnhancedVolcano")
+BiocManager::install("reshape2")
+
+### Activating Packages ###
+
+library(BiocManager)
+library(Biobase)
+library(oligo)
+library(oligoClasses)
+library(ggplot2)
+library(limma)
+library(pheatmap)
+library(RColorBrewer)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(hgu133plus2.db)
+library(EnhancedVolcano)
+
+
+### Setting Working Directory ###
+setwd("D:/Brain/Brain_cancer")
+getwd()
+
+raw_data_dir <- ("D:/Brain/Brain_cancer")
+
+### Import the SDRF file, Reading SDRF file, Setting Column name and Changing SDRF file format to
+### Annotated Data Frame ### 
+
+sdrf_location <- file.path(raw_data_dir,"meta_data.txt")
+SDRF <- read.delim(sdrf_location)
+rownames(SDRF) <- SDRF$Array.Data.File
+SDRF <- AnnotatedDataFrame(SDRF)
+
+#### Reading .CEL Files ####
+
+raw_data <- oligo::read.celfiles(filenames = file.path(raw_data_dir, 
+                                                       SDRF$Array.Data.File),
+                                 verbose = FALSE, phenoData = SDRF)
+stopifnot(validObject(raw_data))
+
+
+### Extracting Useful Columns from Expression Set ###
+
+Biobase::pData(raw_data) <- Biobase::pData(raw_data)[, 
+                                                     c("Source.name", "Phenotype", "Array.Data.File")]
+
+
+### Transforming Raw Data via Log2 (Transformation) ###
+
+exp_raw <- log2(Biobase::exprs(raw_data))
+
+#######PCA plot of the raw data#######
+##Data preparation for PCA###
+
+PCA_raw <- prcomp(t(exp_raw), scale. = FALSE)
+
+percentVar <- round(100*PCA_raw$sdev^2/sum(PCA_raw$sdev^2),1)
+
+sd_ratio <- sqrt(percentVar[2] / percentVar[1])
+
+dataGG <- data.frame(PC1 = PCA_raw$x[,1], PC2 = PCA_raw$x[,2],
+                     phenotype = pData(raw_data)$Phenotype)
+
+##PCA plot##
+
+pdf(file="PCA_plot_raw_data.pdf", width=12, height = 8)
+ggplot(dataGG, aes(PC1, PC2)) +
+  geom_point(aes(shape = phenotype, colour = phenotype), size = 4) +
+  ggtitle("PCA plot of log-transformed raw expression data") +
+  xlab(paste0("PC1, VarExp: ", percentVar[1], "%")) +
+  ylab(paste0("PC2, VarExp: ", percentVar[2], "%")) +
+  theme_bw() +  # Using a clean black and white theme
+  theme(plot.title = element_text(hjust = 0.5, size = 16),
+        axis.title = element_text(size = 14),
+        legend.title = element_text(size = 12),
+        legend.position = "bottom",
+        panel.spacing = unit(1, "lines")) +
+  scale_shape_manual(values = c(15, 17)) +  # Custom shapes for points
+  scale_color_manual(values = c("red", "blue"))  # Custom colors for points
+dev.off()
+
+#######BoxPlot for the RAW data#######
+
+pdf(file= "BoxPlot_RAW.pdf", width=12, height=8)
+oligo::boxplot(raw_data, target = "core", notch = TRUE,
+               las = 2, main = "Boxplot of Raw Expression Data",
+               col = ifelse(pData(raw_data)$Phenotype == "GBM", "red3", "lightgreen"),
+               names = ifelse(pData(raw_data)$Phenotype == "GBM", "GBM", "Healthy"))
+title(ylab = "Expression Levels", col.lab = "black", font.lab = 2, line = 3) 
+abline(h = pretty(range(exprs(raw_data)), 10), col = "lightgray", lty = "dotted") 
+dev.off()
+
+
+#######RMA calibration of the data (Robust Multi-array Average) (Quantile Normalizaton)#######
+
+palmieri_eset_norm <- oligo::rma(raw_data)
+
+
+
+##BoxPlot for the NORMALIZED data##
+pdf(file="Box_plot_normalized_data.pdf", width=12, height = 8)
+oligo::boxplot(palmieri_eset_norm, target = "core",notch = TRUE,
+               las = 2, main = "Boxplot of Normalized Expression Data",
+               col = ifelse(pData(palmieri_eset_norm)$Phenotype == "GBM", "red3", "lightgreen"),
+               names = ifelse(pData(palmieri_eset_norm)$Phenotype == "GBM", "GBM", "Healthy"))
+title(ylab = "Expression Levels", col.lab = "black", font.lab = 2, line = 3) # Enhanced axis labels
+abline(h = pretty(range(exprs(palmieri_eset_norm)), 10), col = "lightgray", lty = "dotted") # Add horizontal gridlines
+dev.off()
+
+#######PCA plot of the NORMALIZAED data#######
+
+##Data preparation for PCA plot##
+exp_palmieri <- Biobase::exprs(palmieri_eset_norm)
+
+#write.csv(exp_palmieri, "expression.csv")
+
+PCA <- prcomp(t(exp_palmieri), scale = FALSE)
+
+percentVar <- round(100*PCA$sdev^2/sum(PCA$sdev^2),1)
+
+sd_ratio <- sqrt(percentVar[2] / percentVar[1])
+
+dataGG <- data.frame(PC1 = PCA$x[,1], PC2 = PCA$x[,2],
+                     phenotype =
+                       Biobase::pData(palmieri_eset_norm)$Phenotype)
+
+##PCA plot##
+pdf(file="PCA_plot_normalized_data.pdf", width=12, height = 8)
+ggplot(dataGG, aes(PC1, PC2)) +
+  geom_point(aes(shape = phenotype, colour = phenotype), size = 3, alpha = 0.7) +
+  stat_ellipse(aes(colour = phenotype), type = "norm", linetype = 2, linewidth = 1) +
+  ggtitle("PCA plot of the log-transformed normalized expression data") +
+  xlab(paste0("PC1, VarExp: ", percentVar[1], "%")) +
+  ylab(paste0("PC2, VarExp: ", percentVar[2], "%")) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10)
+  ) +
+  coord_fixed(ratio = sd_ratio) +
+  scale_shape_manual(values = c(16, 17)) +
+  scale_color_manual(values = c("dodgerblue", "firebrick")) +
+  theme(legend.position = "right")
+dev.off()
+#######Heatmap clustering analysis#######
+
+### Step 1: Setting Data for Heat Map ###
+
+# Set disease names based on the 'Phenotype' data
+disease_names <- ifelse(str_detect(pData(palmieri_eset_norm)$Phenotype, "Healthy"), "Healthy", "GBM")
+
+# Create a data frame for annotations
+annotation_for_heatmap <- data.frame(Disease = factor(disease_names, levels = c("GBM", "Healthy")))
+
+# Ensure row names for the annotation match the expression data
+row.names(annotation_for_heatmap) <- row.names(pData(palmieri_eset_norm))
+
+# Compute distances using Manhattan method on transposed expression data
+dists <- as.matrix(dist(t(exp_palmieri), method = "manhattan"))
+rownames(dists) <- colnames(dists) <- row.names(pData(palmieri_eset_norm))
+
+
+### Step 2: Defining Colors and Captions for Heat Map ###
+
+# Define an enhanced color palette, focusing on better visual distinction
+hmcol <- colorRampPalette(brewer.pal(9, "Spectral"))(100)
+
+# Set diagonal to NA to avoid self-comparison
+diag(dists) <- NA
+
+# Define colors for annotations
+ann_colors <- list(Disease = c("Healthy" = "lightgreen", "GBM" = "red3"))
+
+# Heatmap setup with advanced features
+pdf(file="Heatmap.pdf", width=22, height = 12)
+pheatmap(dists,
+         color = hmcol,
+         annotation_row = annotation_for_heatmap,
+         annotation_colors = ann_colors,
+         legend = TRUE,
+         treeheight_row = 0,
+         treeheight_col = 50,
+         legend_breaks = seq(min(dists, na.rm = TRUE), max(dists, na.rm = TRUE), length.out = 5),
+         legend_labels = c("Very Small", "Small", "Medium", "Large", "Very Large"),
+         main = "Clustering Heatmap",
+         fontsize = 12,
+         fontsize_row = 10,
+         show_colnames = FALSE,  # Do not show column names
+         border_color = "grey50",
+         cellwidth = 20,
+         cellheight = 10)
+dev.off()
+####### Probes Annotation with Gene Symbol and Name #######
+
+### Annotation with "hgu133plus2.db" ###
+
+anno_palmieri <- AnnotationDbi::select(hgu133plus2.db,
+                                       keys = (featureNames(palmieri_eset_norm)),
+                                       columns = c("SYMBOL", "GENENAME"),
+                                       keytype = "PROBEID")
+anno_palmieri <- subset(anno_palmieri, !is.na(SYMBOL))
+
+
+### Removing DUPLICATED Probe IDs ###
+
+anno_grouped <- dplyr::group_by(anno_palmieri, PROBEID)
+
+anno_summarized <-
+  dplyr::summarize(anno_grouped, no_of_matches = n_distinct(SYMBOL))
+
+### Filtered Probe IDs having more than TWO matches ###
+### anno_filtered object will show us duplicated Probe IDs ### 1531 Probe IDs ### 
+
+anno_filtered <- filter(anno_summarized, no_of_matches > 1)
+probe_stats <- anno_filtered
+
+### Excluding ###
+
+ids_to_exlude <- (featureNames(palmieri_eset_norm) %in% probe_stats$PROBEID)
+
+### Adding the Updated Data to the Expression Set ###
+
+palmieri_final <- subset(palmieri_eset_norm, !ids_to_exlude)
+
+fData(palmieri_final)$PROBEID <- rownames(fData(palmieri_final))
+
+fData(palmieri_final) <- left_join(fData(palmieri_final), anno_palmieri)
+
+### restore rownames after left_join ###
+
+rownames(fData(palmieri_final)) <- fData(palmieri_final)$PROBEID
+
+#write.csv(palmieri_final,"palmieri_final.csv")
+
+####### Find out DEGs using LIMMA #######
+
+### Setting Data for LINEAR MODELS and CONTRASTS ###
+
+individual <-
+  as.character(Biobase::pData(palmieri_final)$Phenotype)
+
+disease <- str_replace_all(Biobase::pData(palmieri_final)$Phenotype,
+                           " ", " ")
+
+disease <- ifelse(str_detect(Biobase::pData(palmieri_final)$Phenotype,
+                             "Healthy"), "Healthy", "GBM")
+
+design_palmieri <- model.matrix(~ 0 + disease)
+
+colnames(design_palmieri)[1:2]<- c("GBM","Healthy")
+
+rownames(design_palmieri) <- individual 
+
+#write.csv(design_palmieri,"design matrix.csv")
+
+### Contrasts and hypotheses tests###
+
+fit <- lmFit(design_palmieri)
+
+### REMEMBER !!! ### While taking Contrast, you should place first those SAMPLES ### 
+### in which you want to see Differentially Expressed Genes ###  
+
+contrast_matrix <- makeContrasts('GBM-Healthy', levels = design_palmieri)
+
+### Building LINEAR MODELS Considering CONTRAST Design ###
+
+palmieri_fit <- eBayes(contrasts.fit(lmFit(palmieri_final, design_palmieri), contrast_matrix))
+
+### Extracting Final Results ###
+
+table <- topTable(palmieri_fit, number = Inf)
+
+#write.csv(table,"top_table_final.csv")
+
+### Excluding probe IDs with NO symbols ###
+
+table <- subset(table, !is.na(SYMBOL))
+
+### MOST Significant Differentiallty Expressed Genes ###
+
+DEG_Norm_DS<- subset(table, adj.P.Val < 0.05)
+
+write.csv(DEG_Norm_DS, 'finalize_table.csv')
+
+### Valcano Plot ###
+pdf(file="Volcano_plot.pdf", width=12, height = 8)
+EnhancedVolcano(table,
+                
+                lab = table$SYMBOL,
+                
+                x = "logFC",
+                
+                y = "P.Value",
+                ylim = c(0, -log10(10e-15)),
+                
+                pCutoff = 0.05,
+                
+                FCcutoff = 1,
+                
+                title = "Healthy v/s GBM")
+
+volcano_names <- ifelse(abs(palmieri_fit$coefficients)>=0.5, 
+                        palmieri_fit$genes$SYMBOL, NA)
+dev.off()
+
+
+## GOOD LUCK ####
+
