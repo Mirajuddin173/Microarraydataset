@@ -1,0 +1,500 @@
+pose     81 E=-1.585219e+001
+pose     82 E=-1.131642e+001
+pose     83 E=-1.622900e+001
+pose     84 E=-1.717157e+001
+pose     85 E=-1.239263e+001
+pose     86 E=-1.941463e+001
+pose     87 E=-1.955229e+001
+pose     88 E=-1.839611e+001
+pose     89 E=-1.992300e+001
+pose     90 E=-1.433487e+001
+pose     91 E=-1.702860e+001
+pose     92 E=-1.591390e+001
+pose     93 E=-1.867217e+001
+pose     94 E=-1.665116e+001
+pose     95 E=-1.827698e+001
+pose     96 E=-1.665360e+001
+pose     97 E=-1.656871e+001
+pose     98 E=-1.841441e+001
+pose     99 E=-1.938256e+001
+pose    100 E=-1.789246e+001
+Filtered 0 poses with bad geometry (100 remaining)
+[GBVI/WSA dG] Rescoring 100 poses
+Keeping 84 non-duplicate poses (of 100)
+Retaining 84 poses (of 84)
+Docking mseq=91,
+Fixing hydrogens.
+Finished fixing hydrogens.
+Fixing hydrogens.
+Finished fixing hydrogens.
+Performing conformational search...
+... 18 conformations obtained using Conformation Import.
+[Triangle Matcher] ligand:
+[Triangle Matcher] site points: 284, heavy atoms: 23
+Placement returning 1000 poses.
+[London dG] Scoring 1000 poses
+Keeping 815 non-duplicate poses (of 1000)
+Retaining 100 poses (of 815)
+[Induced Fit] Refining 100 poses
+pose      1 E=-1.665976e+001
+pose      2 E=-2.221009e+001
+pose      3 E=-1.700879e+001
+pose      4 E=-2.306565e+001
+pose      5 E=-2.095073e+001
+pose      6 E=-2.130961e+001
+pose      7 E=-2.101139e+001
+pose      8 E=-1.444557e+001
+pose      9 E=-2.347627e+001
+pose     10 E=-1.952157e+001
+pose     11 E=-1.867123e+001
+pose     12 E=-2.051730e+001
+pose     13 E=-1.920317e+001
+pose     14 E=-1.987099e+001
+pose     15 E=-1.915545e+001
+pose     16 E=-2.267859e+001
+pose     17 E=-9.013384e+000
+pose     18 E=-2.147112e+001
+pose     19 E=-2.006400e+001
+pose     20 E=-2.474978e+001
+pose     21 E=-1.710248e+001
+pose     22 E=-1.411035e+001
+pose     23 E=-2.736648e+001
+pose     24 E=-2.367349e+001
+pose     25 E=-1.951880e+001
+pose     26 E=-1.806838e+001
+pose     27 E=-2.440713e+001
+pose     28 E=-2.752811e+001
+pose     29 E=-2.046577e+001
+pose     30 E=-2.255263e+001
+pose     31 E=-1.604785e+001
+pose     32 E=-1.664912e+001
+pose     33 E=-2.298298e+001
+pose     34 E=-1.637300e+001
+pose     35 E=-1.773696e+001
+pose     36 E=-2.316257e+001
+pose     37 E=-1.992607e+001
+pose     38 E=-2.077769e+001
+pose     39 E=-2.044655e+001
+pose     40 E=-2.238750e+001
+pose     41 E=-2.217010e+001
+pose     42 E=-1.761768e+001
+pose     43 E=-1.549353e+001
+pose     44 E=-2.361815e+001
+pose     45 E=-1.716070e+001
+pose     46 E=-2.275111e+001
+pose     47 E=-1.859137e+001
+pose     48 E=-1.112333e+001
+pose     49 E=-1.891254e+001
+pose     50 E=-1.879744e+001
+pose     51 E=-2.280045e+001
+pose     52 E=-1.376568e+001
+pose     53 E=-1.757152e+001
+pose     54 E=-2.428264e+001
+pose     55 E=-1.881776e+001
+pose     56 E=-2.527964e+001
+pose     57 E=-1.625985e+001
+pose     58 E=-2.438289e+001
+pose     59 E=-1.876213e+001
+pose     60 E=-2.631608e+001
+pose     61 E=-1.353667e+001
+pose     62 E=-2.038643e+001
+pose     63 E=-1.584923e+001
+pose     64 E=-1.921018e+001
+pose     65 E=-1.419990e+001
+pose     66 E=-2.034226e+001
+pose     67 E=-2.317373e+001
+pose     68 E=-2.225065e+001
+pose     69 E=-2.470675e+001
+pose     70 E=-2.173201e+001
+pose     71 E=-2.729295e+001
+pose     72 E=-1.918568e+001
+pose     73 E=-1.176421e+001
+pose     74 E=-1.900837e+001
+pose     75 E=-1.952814e+001
+pose     76 E=-1.858532e+001
+pose     77 E=-2.903520e+001
+pose     78 E=-1.713378e+001
+pose     79 E=-1.663845e+001
+pose     80 E=-2.538165e+001
+pose     81 E=-2.070918e+001
+pose     82 E=-2.121895e+001
+pose     83 E=-1.767113e+001
+pose     84 E=-2.358187e+001
+pose     85 E=-1.588927e+001
+pose     86 E=-2.192689e+001
+pose     87 E=-1.438409e+001
+pose     88 E=-1.995129e+001
+pose     89 E=-2.359315e+001
+pose     90 E=-1.418788e+001
+pose     91 E=-1.195968e+001
+pose     92 E=-2.539748e+001
+pose     93 E=-1.738456e+001
+pose     94 E=-2.413899e+001
+pose     95 E=-1.619803e+001
+pose     96 E=-1.931527e+001
+pose     97 E=-2.038235e+001
+pose     98 E=-2.471457e+001
+pose     99 E=-1.806795e+001
+pose    100 E=-2.028379e+001
+Filtered 0 poses with bad geometry (100 remaining)
+[GBVI/WSA dG] Rescoring 100 poses
+Keeping 97 non-duplicate poses (of 100)
+Retaining 97 poses (of 97)
+Docking mseq=92,
+Fixing hydrogens.
+Finished fixing hydrogens.
+Fixing hydrogens.
+Finished fixing hydrogens.
+Performing conformational search...
+... 1 conformations obtained using Conformation Import.
+[Triangle Matcher] ligand:
+[Triangle Matcher] site points: 284, heavy atoms: 14
+Placement returning 1000 poses.
+[London dG] Scoring 1000 poses
+Keeping 504 non-duplicate poses (of 1000)
+Retaining 100 poses (of 504)
+[Induced Fit] Refining 100 poses
+pose      1 E=-1.973835e+001
+pose      2 E=-1.547163e+001
+pose      3 E=-1.789854e+001
+pose      4 E=-1.097808e+001
+pose      5 E=-1.524294e+001
+pose      6 E=-2.069312e+001
+pose      7 E=-1.737177e+001
+pose      8 E=-1.973852e+001
+pose      9 E=-1.247910e+001
+pose     10 E=-1.231741e+001
+pose     11 E=-1.806017e+001
+pose     12 E=-2.069349e+001
+pose     13 E=-9.879538e+000
+pose     14 E=-1.402403e+001
+pose     15 E=-1.907254e+001
+pose     16 E=-1.844625e+001
+pose     17 E=-1.645095e+001
+pose     18 E=-1.097777e+001
+pose     19 E=-1.722778e+001
+pose     20 E=-1.254648e+001
+pose     21 E=-1.160854e+001
+pose     22 E=-1.769527e+001
+pose     23 E=-1.806177e+001
+pose     24 E=-1.605287e+001
+pose     25 E=-2.178312e+001
+pose     26 E=-1.454228e+001
+pose     27 E=-1.788631e+001
+pose     28 E=-1.614291e+001
+pose     29 E=-1.231677e+001
+pose     30 E=-1.578835e+001
+pose     31 E=-1.813666e+001
+pose     32 E=-1.679209e+001
+pose     33 E=-1.719386e+001
+pose     34 E=-2.000446e+001
+pose     35 E=-2.205935e+001
+pose     36 E=-1.176021e+001
+pose     37 E=-1.640363e+001
+pose     38 E=-1.746941e+001
+pose     39 E=-1.234511e+001
+pose     40 E=-2.205848e+001
+pose     41 E=-1.806251e+001
+pose     42 E=-1.568638e+001
+pose     43 E=-1.904288e+001
+pose     44 E=-1.717620e+001
+pose     45 E=-1.529216e+001
+pose     46 E=-1.238656e+001
+pose     47 E=-1.886453e+001
+pose     48 E=-1.718681e+001
+pose     49 E=-1.506390e+001
+pose     50 E=-1.102003e+001
+pose     51 E=-2.178454e+001
+pose     52 E=-2.205799e+001
+pose     53 E=-1.962666e+001
+pose     54 E=-1.668506e+001
+pose     55 E=-1.715509e+001
+pose     56 E=-1.903963e+001
+pose     57 E=-1.411168e+001
+pose     58 E=-2.044915e+001
+pose     59 E=-1.824338e+001
+pose     60 E=-1.865325e+001
+pose     61 E=-1.397298e+001
+pose     62 E=-1.847936e+001
+pose     63 E=-2.029318e+001
+pose     64 E=-1.529144e+001
+pose     65 E=-1.022624e+001
+pose     66 E=-1.508821e+001
+pose     67 E=-1.854010e+001
+pose     68 E=-1.683567e+001
+pose     69 E=-1.769455e+001
+pose     70 E=-1.647442e+001
+pose     71 E=-7.816893e+000
+pose     72 E=-1.367882e+001
+pose     73 E=-1.536134e+001
+pose     74 E=-1.506490e+001
+pose     75 E=-1.193303e+001
+pose     76 E=-1.769981e+001
+pose     77 E=-1.015637e+001
+pose     78 E=-1.314577e+001
+pose     79 E=-9.713779e+000
+pose     80 E=-1.565260e+001
+pose     81 E=-1.683490e+001
+pose     82 E=-1.888142e+001
+pose     83 E=-2.000058e+001
+pose     84 E=-2.205951e+001
+pose     85 E=-1.676055e+001
+pose     86 E=-1.063051e+001
+pose     87 E=-1.244275e+001
+pose     88 E=-1.904212e+001
+pose     89 E=-1.823576e+001
+pose     90 E=-1.091664e+001
+pose     91 E=-1.519867e+001
+pose     92 E=-2.209294e+001
+pose     93 E=-1.099702e+001
+pose     94 E=-1.775309e+001
+pose     95 E=-2.117756e+001
+pose     96 E=-1.262085e+001
+pose     97 E=-1.994249e+001
+pose     98 E=-1.378087e+001
+pose     99 E=-1.292500e+001
+pose    100 E=-1.378838e+001
+Filtered 0 poses with bad geometry (100 remaining)
+[GBVI/WSA dG] Rescoring 100 poses
+Keeping 71 non-duplicate poses (of 100)
+Retaining 71 poses (of 71)
+Docking mseq=93,
+Fixing hydrogens.
+Finished fixing hydrogens.
+Fixing hydrogens.
+Finished fixing hydrogens.
+Performing conformational search...
+... 6 conformations obtained using Conformation Import.
+[Triangle Matcher] ligand:
+[Triangle Matcher] site points: 284, heavy atoms: 15
+Placement returning 1000 poses.
+[London dG] Scoring 1000 poses
+Keeping 735 non-duplicate poses (of 1000)
+Retaining 100 poses (of 735)
+[Induced Fit] Refining 100 poses
+pose      1 E=-1.556398e+001
+pose      2 E=-2.329988e+001
+pose      3 E=-1.160711e+001
+pose      4 E=-2.062407e+001
+pose      5 E=-1.469083e+001
+pose      6 E=-1.430336e+001
+pose      7 E=-1.531198e+001
+pose      8 E=-1.643290e+001
+pose      9 E=-2.222877e+001
+pose     10 E= 3.057216e+001
+pose     11 E=-1.901783e+001
+pose     12 E=-1.583232e+001
+pose     13 E=-2.221913e+001
+pose     14 E=-2.178015e+001
+pose     15 E=-1.052937e+001
+pose     16 E=-2.038927e+001
+pose     17 E=-1.685607e+001
+pose     18 E=-1.715903e+001
+pose     19 E=-1.621605e+001
+pose     20 E=-1.669170e+001
+pose     21 E=-1.724488e+001
+pose     22 E=-1.822211e+001
+pose     23 E=-1.411985e+001
+pose     24 E=-1.223773e+001
+pose     25 E=-1.464605e+001
+pose     26 E=-1.665903e+001
+pose     27 E=-1.454278e+001
+pose     28 E=-1.590150e+001
+pose     29 E=-1.865638e+001
+pose     30 E=-1.902042e+001
+pose     31 E=-2.330693e+001
+pose     32 E= 4.707531e+001
+pose     33 E=-1.630827e+001
+pose     34 E=-1.667844e+001
+pose     35 E=-1.835328e+001
+pose     36 E=-1.149925e+001
+pose     37 E=-1.678602e+001
+pose     38 E=-1.013837e+001
+pose     39 E=-1.588262e+001
+pose     40 E=-1.865445e+001
+pose     41 E=-2.081319e+001
+pose     42 E=-1.998806e+001
+pose     43 E=-1.254959e+001
+pose     44 E=-9.862353e+000
+pose     45 E=-2.079016e+001
+pose     46 E=-1.474514e+001
+pose     47 E=-1.904779e+001
+pose     48 E=-1.198458e+001
+pose     49 E=-1.305123e+001
+pose     50 E=-1.513653e+001
+pose     51 E=-1.753900e+001
+pose     52 E=-1.573830e+001
+pose     53 E=-1.391790e+001
+pose     54 E=-1.360921e+001
+pose     55 E=-1.832905e+001
+pose     56 E=-1.403399e+001
+pose     57 E=-2.095015e+001
+pose     58 E=-2.092900e+001
+pose     59 E=-1.562146e+001
+pose     60 E=-1.299740e+001
+pose     61 E=-2.164835e+001
+pose     62 E=-1.245886e+001
+pose     63 E=-1.831339e+001
+pose     64 E=-1.330559e+001
+pose     65 E=-1.521716e+001
+pose     66 E=-1.800464e+001
+pose     67 E=-1.606791e+001
+pose     68 E=-1.747632e+001
+pose     69 E=-2.166695e+001
+pose     70 E=-1.495848e+001
+pose     71 E=-2.074525e+001
+pose     72 E=-1.281417e+001
+pose     73 E=-1.310807e+001
+pose     74 E=-1.860647e+001
+pose     75 E=-3.214348e+000
+pose     76 E=-1.339523e+001
+pose     77 E=-1.365226e+001
+pose     78 E=-1.738882e+001
+pose     79 E=-1.146610e+001
+pose     80 E=-2.222117e+001
+pose     81 E=-1.678798e+001
+pose     82 E=-1.672204e+001
+pose     83 E=-1.179388e+001
+pose     84 E=-1.597393e+001
+pose     85 E=-1.837154e+001
+pose     86 E=-1.158652e+001
+pose     87 E=-1.740139e+001
+pose     88 E=-1.652064e+001
+pose     89 E=-2.201223e+001
+pose     90 E=-1.678829e+001
+pose     91 E=-1.385140e+001
+pose     92 E=-1.438479e+001
+pose     93 E=-1.861458e+001
+pose     94 E=-1.875233e+001
+pose     95 E=-1.981233e+001
+pose     96 E=-1.033864e+001
+pose     97 E=-1.683914e+001
+pose     98 E=-1.370754e+001
+pose     99 E=-1.223089e+001
+pose    100 E=-1.539418e+001
+Filtered 0 poses with bad geometry (100 remaining)
+[GBVI/WSA dG] Rescoring 100 poses
+Keeping 87 non-duplicate poses (of 100)
+Retaining 87 poses (of 87)
+Docking mseq=94,
+Fixing hydrogens.
+Finished fixing hydrogens.
+Fixing hydrogens.
+Finished fixing hydrogens.
+Performing conformational search...
+... 20 conformations obtained using Conformation Import.
+[Triangle Matcher] ligand:
+[Triangle Matcher] site points: 284, heavy atoms: 19
+Placement returning 1000 poses.
+[London dG] Scoring 1000 poses
+Keeping 492 non-duplicate poses (of 1000)
+Retaining 100 poses (of 492)
+[Induced Fit] Refining 100 poses
+pose      1 E=-1.145008e+001
+pose      2 E=-1.753956e+001
+pose      3 E=-1.664113e+001
+pose      4 E=-1.579716e+001
+pose      5 E=-1.575730e+001
+pose      6 E=-1.781584e+001
+pose      7 E=-1.427780e+001
+pose      8 E=-1.754983e+001
+pose      9 E=-1.908819e+001
+pose     10 E=-1.550744e+001
+pose     11 E=-1.456481e+001
+pose     12 E=-1.964167e+001
+pose     13 E=-2.140991e+001
+pose     14 E=-2.056763e+001
+pose     15 E=-1.771669e+001
+pose     16 E=-1.840097e+001
+pose     17 E=-1.771321e+001
+pose     18 E=-1.025445e+001
+pose     19 E=-1.032689e+001
+pose     20 E=-1.928477e+001
+pose     21 E=-1.947139e+001
+pose     22 E=-2.508351e+001
+pose     23 E=-1.943631e+001
+pose     24 E=-1.568083e+001
+pose     25 E=-1.561142e+001
+pose     26 E=-1.944260e+001
+pose     27 E=-1.719083e+001
+pose     28 E=-1.478875e+001
+pose     29 E=-1.697394e+001
+pose     30 E=-1.963788e+001
+pose     31 E=-1.736775e+001
+pose     32 E=-1.969986e+001
+pose     33 E=-1.777173e+001
+pose     34 E=-1.688230e+001
+pose     35 E=-1.544422e+001
+pose     36 E=-2.143368e+001
+pose     37 E=-1.424257e+001
+pose     38 E=-1.571781e+001
+pose     39 E=-1.978071e+001
+pose     40 E=-1.485073e+001
+pose     41 E=-1.717217e+001
+pose     42 E=-2.211134e+001
+pose     43 E=-1.742703e+001
+pose     44 E=-2.061827e+001
+pose     45 E=-1.840545e+001
+pose     46 E=-1.756367e+001
+pose     47 E=-1.645550e+001
+pose     48 E=-1.789311e+001
+pose     49 E=-1.974739e+001
+pose     50 E=-1.510850e+001
+pose     51 E=-1.949169e+001
+pose     52 E=-1.161157e+001
+pose     53 E=-1.623305e+001
+pose     54 E=-1.723586e+001
+pose     55 E=-1.744000e+001
+pose     56 E=-1.523568e+001
+pose     57 E=-2.103617e+001
+pose     58 E=-2.433724e+001
+pose     59 E=-1.376750e+001
+pose     60 E=-1.771292e+001
+pose     61 E=-1.122181e+001
+pose     62 E=-1.509795e+001
+pose     63 E=-1.107879e+001
+pose     64 E=-1.600506e+001
+pose     65 E=-2.382729e+001
+pose     66 E=-1.030168e+001
+pose     67 E=-1.452043e+001
+pose     68 E=-1.759051e+001
+pose     69 E=-1.780760e+001
+pose     70 E=-2.156739e+001
+pose     71 E=-1.575156e+001
+pose     72 E=-1.559221e+001
+pose     73 E=-1.851865e+001
+pose     74 E=-7.873944e+000
+pose     75 E=-1.231165e+001
+pose     76 E=-1.351567e+001
+pose     77 E=-1.855509e+001
+pose     78 E=-2.024652e+001
+pose     79 E=-2.028847e+001
+pose     80 E=-1.015819e+001
+pose     81 E=-2.037472e+001
+pose     82 E=-1.109376e+001
+pose     83 E=-1.080347e+001
+pose     84 E=-2.108168e+001
+pose     85 E=-1.779856e+001
+pose     86 E=-1.275807e+001
+pose     87 E=-1.918467e+001
+pose     88 E=-1.613577e+001
+pose     89 E=-2.302011e+001
+pose     90 E=-1.836542e+001
+pose     91 E=-1.776140e+001
+pose     92 E=-1.162260e+001
+pose     93 E=-1.469839e+001
+pose     94 E=-1.777784e+001
+pose     95 E=-1.434871e+001
+pose     96 E=-1.745817e+001
+pose     97 E=-1.817138e+001
+pose     98 E=-1.839794e+001
+pose     99 E=-1.258178e+001
+pose    100 E=-1.645812e+001
+Filtered 0 poses with bad geometry (100 remaining)
+[GBVI/WSA dG] Rescoring 100 poses
+Keeping 86 non-duplicate poses (of 100)
+Retaining 86 poses (of 86)
+Finished with docking ligands in c:/users/dell/appdata/local/temp/ligands11785.m
+Docking finished at Tue Jul 01 13:01:00 2025
+svl> copy
+pose     80 E=-1.165574e+001
